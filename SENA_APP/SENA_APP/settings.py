@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'widget_tweaks',
     'instructores',
+    'programas',
 ]
 
 MIDDLEWARE = [
