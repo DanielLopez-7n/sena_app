@@ -1,0 +1,62 @@
+{% extends "master.html" %}
+
+{% block title %}Detalles del Instructor: {{ instructor.nombre_completo }}{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Detalles del Instructor: {{ instructor.nombre_completo }}</h1>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white fw-bold">
+            <i class="fas fa-info-circle me-2"></i> Información Completa
+        </div>
+        <div class="card-body">
+            
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-user-circle me-1"></i> Datos Personales y Contacto</h5>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <p><strong>Tipo Documento:</strong> {{ instructor.get_tipo_documento_display }}</p>
+                    <p><strong>Documento de Identidad:</strong> {{ instructor.documento_identidad }}</p>
+                    <p><strong>Nombre Completo:</strong> {{ instructor.nombre_completo }}</p>
+                    <p><strong>Fecha de Nacimiento:</strong> {{ instructor.fecha_nacimiento|date:"Y-m-d" }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p><strong>Teléfono:</strong> {{ instructor.telefono }}</p>
+                    <p><strong>Correo Electrónico:</strong> {{ instructor.correo }}</p>
+                    <p><strong>Ciudad:</strong> {{ instructor.ciudad }}</p>
+                    <p><strong>Dirección:</strong> {{ instructor.direccion }}</p>
+                </div>
+            </div>
+            
+            <h5 class="mt-4 mb-3 text-success"><i class="fas fa-graduation-cap me-1"></i> Datos Académicos y Laborales</h5>
+            <hr>
+            <div class="row">
+                <div class="col-md-6 mb-3">
+                    <p><strong>Nivel Educativo:</strong> {{ instructor.get_nivel_educativo_display }}</p>
+                    <p><strong>Especialidad:</strong> {{ instructor.especialidad }}</p>
+                    <p><strong>Años de Experiencia:</strong> {{ instructor.anos_experiencia }}</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p><strong>Estado:</strong> 
+                        {% if instructor.activo %}
+                            <span class="badge bg-success">Activo</span>
+                        {% else %}
+                            <span class="badge bg-danger">Inactivo</span>
+                        {% endif %}
+                    </p>
+                    <p><strong>Fecha Vinculación:</strong> {{ instructor.fecha_vinculacion|date:"Y-m-d" }}</p>
+                    <p><strong>Fecha Registro:</strong> {{ instructor.fecha_registro|date:"Y-m-d h:i a" }}</p>
+                </div>
+            </div>
+            
+        </div>
+        
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{% url 'lista_instructores' %}" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
+            </a>
+            <a href="{% url 'editar_instructor' instructor_id=instructor.id %}" class="btn btn-warning">
+                <i class="fas fa-edit me-1"></i> Editar
+            </a>
+        </div>
+    </div>
+{% endblock %}

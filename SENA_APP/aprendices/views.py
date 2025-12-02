@@ -54,3 +54,7 @@ def editar_aprendiz(request, aprendiz_id):
         
     context = {'form': form, 'titulo': f'Editar Aprendiz: {aprendiz.nombre}', 'aprendiz': aprendiz, 'es_edicion': True}
     return render(request, 'aprendiz_form.html', context)
+
+def home_page(request):
+    # Asegúrate de que este archivo pueda acceder a 'main.html'
+    return render(request, 'main.html')
