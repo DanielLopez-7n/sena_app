@@ -1,0 +1,92 @@
+{% extends "master.html" %}
+
+{% block title %}Detalles del Programa: {{ programa.nombre }}{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Detalles del Programa: {{ programa.nombre }}</h1>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white fw-bold">
+            <i class="fas fa-info-circle me-2"></i> Información General del Programa
+        </div>
+        
+        <div class="card-body">
+            
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-id-card me-1"></i> Identificación y Modalidad</h5>
+            <div class="row mb-4 border-bottom pb-3">
+                <div class="col-md-4">
+                    <p><strong>Código:</strong> {{ programa.codigo }}</p>
+                    <p><strong>Nombre:</strong> {{ programa.nombre }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Nivel de Formación:</strong> {{ programa.get_nivel_formacion_display }}</p>
+                    <p><strong>Modalidad:</strong> {{ programa.get_modalidad_display }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Estado:</strong> 
+                        {% if programa.estado == 'ACT' %}
+                            <span class="badge bg-success">{{ programa.get_estado_display }}</span>
+                        {% elif programa.estado == 'INA' %}
+                            <span class="badge bg-warning text-dark">{{ programa.get_estado_display }}</span>
+                        {% else %}
+                            <span class="badge bg-secondary">{{ programa.get_estado_display }}</span>
+                        {% endif %}
+                    </p>
+                    <p><strong>Duración:</strong> {{ programa.duracion_meses }} meses ({{ programa.duracion_horas }} horas)</p>
+                </div>
+            </div>
+            
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-map-marker-alt me-1"></i> Ubicación y Registro</h5>
+            <div class="row mb-4 border-bottom pb-3">
+                <div class="col-md-4">
+                    <p><strong>Regional:</strong> {{ programa.regional }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Centro de Formación:</strong> {{ programa.centro_formacion }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Fecha de Creación:</strong> {{ programa.fecha_creacion|date:"Y-m-d" }}</p>
+                    <p><strong>Fecha de Registro:</strong> {{ programa.fecha_registro|date:"Y-m-d h:i a" }}</p>
+                </div>
+            </div>
+
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-file-alt me-1"></i> Contenido y Requisitos</h5>
+            
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card bg-light h-100 p-3">
+                        <p class="fw-bold text-primary">Descripción General</p>
+                        <p class="text-muted small">{{ programa.descripcion|linebreaksbr }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light h-100 p-3">
+                        <p class="fw-bold text-primary">Requisitos de Ingreso</p>
+                        <p class="text-muted small">{{ programa.requisitos_ingreso|linebreaksbr }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light h-100 p-3">
+                        <p class="fw-bold text-primary">Competencias a Desarrollar</p>
+                        <p class="text-muted small">{{ programa.competencias|linebreaksbr }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card bg-light h-100 p-3">
+                        <p class="fw-bold text-primary">Perfil de Egreso</p>
+                        <p class="text-muted small">{{ programa.perfil_egreso|linebreaksbr }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{% url 'lista_programas' %}" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
+            </a>
+            <a href="{% url 'editar_programa' programa_id=programa.id %}" class="btn btn-warning">
+                <i class="fas fa-edit me-1"></i> Editar Programa
+            </a>
+        </div>
+    </div>
+{% endblock %}
