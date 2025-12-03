@@ -1,6 +1,6 @@
 {% extends "master.html" %}
 
-{% block title %}Inicio - SENA APP{% endblock %}
+{% block title %}SENA APP{% endblock %}
 
 {% block content %}
     <div class="p-4 mb-4 bg-success text-white rounded shadow-sm">
@@ -9,9 +9,8 @@
         <p class="lead">Administra y consulta la información de los aprendices e instructores de manera eficiente.</p>
         <div class="d-flex flex-wrap gap-2 mt-3">
             <a href="{% url 'lista_aprendices' %}" class="btn btn-outline-light">Ver Aprendices</a>
-            <a href="#" class="btn btn-outline-light">Ver Instructores</a>
-            <a href="#" class="btn btn-outline-light">Ver Programas</a>
-            <a href="#" class="btn btn-outline-light">Ver Cursos</a>
+            <a href="{% url 'lista_instructores' %}" class="btn btn-outline-light">Ver Instructores</a>
+            <a href="{% url 'lista_programas' %}" class="btn btn-outline-light">Ver Programas</a>
         </div>
     </div>
 
@@ -31,10 +30,20 @@
                 <div class="card-body">
                     <h5 class="card-title fw-bold">Lista de Instructores</h5>
                     <p class="card-text">Total de Instructores: <span class="fw-bold">1</span></p>
-                    <a href="#" class="btn btn-success">Ver Lista</a>
+                    <a href="{% url 'lista_instructores' %}" class="btn btn-success">Ver Lista</a>
                 </div>
             </div>
         </div>
 
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Lista de Programas</h5>
+                    <p class="card-text">Total de Programas: <span class="fw-bold">0</span></p>
+                    <a href="{% url 'lista_programas' %}" class="btn btn-success">Ver Lista</a>
+                </div>
+            </div>
         </div>
 {% endblock %}
