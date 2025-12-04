@@ -41,6 +41,10 @@ class Programa(models.Model):
     estado = models.CharField(max_length=3, choices=ESTADO_CHOICES, default='ACT', verbose_name="Estado")
     fecha_creacion = models.DateField(verbose_name="Fecha de Creación del Programa")
     fecha_registro = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de Registro")
+    
+    def __str__(self):
+        # Queremos que se muestre el nombre del programa y su código
+        return f"{self.nombre} ({self.codigo})"
 
     class Meta:
         verbose_name = "Programa de Formación"
