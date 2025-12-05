@@ -39,13 +39,27 @@
                         
                         <td>{{ x.programa }}</td>
                         
-                        <td>
+                        <td class="d-flex">
+
+                            <!-- Ver Detalles -->
                             <a href="{% url 'details' x.id %}" class="btn btn-sm btn-info text-white me-2">
                                 <i class="fas fa-eye"></i> Ver Detalles
                             </a>
-                            <a href="{% url 'editar_aprendiz' aprendiz_id=x.id %}" class="btn btn-sm btn-warning">
+
+                            <!-- Editar -->
+                            <a href="{% url 'editar_aprendiz' aprendiz_id=x.id %}" class="btn btn-sm btn-warning me-2">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
+
+                            <!-- 🗑 Botón Eliminar -->
+                            <form action="{% url 'eliminar_aprendiz' x.id %}" method="POST" 
+                                  onsubmit="return confirm('¿Seguro que deseas eliminar este aprendiz?');">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </button>
+                            </form>
+
                         </td>
                     </tr>
                     {% empty %}

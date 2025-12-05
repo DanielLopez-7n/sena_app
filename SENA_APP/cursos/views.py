@@ -59,3 +59,12 @@ def editar_curso(request, curso_id):
         
     context = {'form': form, 'titulo': f'Editar Curso: {curso.codigo} - {curso.nombre}', 'curso': curso, 'es_edicion': True}
     return render(request, 'curso_form.html', context)
+
+def eliminar_curso(request, curso_id):
+    curso = get_object_or_404(Curso, id=curso_id)
+
+    if request.method == 'POST':
+        curso.delete()
+        return redirect('lista_cursos')
+
+    return render(request, 'confirm_delete_curso.html', {'curso': curso})

@@ -14,4 +14,8 @@ urlpatterns = [
     
     # READ (Detalle) - Alias: detalle_curso
     path('detalles/<int:curso_id>/', views.detalle_curso, name='detalle_curso'),
+    
+    # DELETE
+    path('cursos/<int:curso_id>/eliminar/', views.eliminar_curso, name='eliminar_curso'),
+
 ]

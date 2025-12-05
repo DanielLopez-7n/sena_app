@@ -14,4 +14,8 @@ urlpatterns = [
     
     # URL para ver detalles (Leer)
     path('aprendices/detalles/<int:aprendiz_id>/', views.details, name='details'),
+    
+    #URL para eliminar (Eliminar)
+    path('aprendices/<int:aprendiz_id>/eliminar/', views.eliminar_aprendiz, name='eliminar_aprendiz'),
+
 ]

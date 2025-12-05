@@ -58,3 +58,13 @@ def editar_aprendiz(request, aprendiz_id):
 def home_page(request):
     # Asegúrate de que este archivo pueda acceder a 'main.html'
     return render(request, 'main.html')
+
+def eliminar_aprendiz(request, aprendiz_id):
+    aprendiz = get_object_or_404(Aprendiz, id=aprendiz_id)
+
+    if request.method == 'POST':
+        aprendiz.delete()
+        return redirect('lista_aprendices')
+
+    return render(request, 'confirm_delete_aprendiz.html', {'aprendiz': aprendiz})
+

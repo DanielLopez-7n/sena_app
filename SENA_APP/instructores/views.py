@@ -48,10 +48,9 @@ def editar_instructor(request, instructor_id):
 
 
 
-# Hasta el momento no se implementa la funcionalidad de eliminar instructores.
-# def eliminar_instructor(request, instructor_id):
-#     instructor = get_object_or_404(Instructor, id=instructor_id)
-#     if request.method == 'POST':
-#         instructor.delete()
-#         return redirect('lista_instructores')
-#     return render(request, 'confirm_delete_instructor.html', {'instructor': instructor})
+def eliminar_instructor(request, instructor_id):
+     instructor = get_object_or_404(Instructor, id=instructor_id)
+     if request.method == 'POST':
+         instructor.delete()
+         return redirect('lista_instructores')
+     return render(request, 'confirm_delete_instructor.html', {'instructor': instructor})

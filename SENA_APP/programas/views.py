@@ -43,3 +43,12 @@ def editar_programa(request, programa_id):
         
     context = {'form': form, 'titulo': f'Editar Programa: {programa.nombre}', 'programa': programa, 'es_edicion': True}
     return render(request, 'programa_form.html', context)
+
+def eliminar_programa(request, programa_id):
+    programa = get_object_or_404(ProgramaFormacion, id=programa_id)
+
+    if request.method == 'POST':
+        programa.delete()
+        return redirect('lista_programas')
+
+    return render(request, 'confirm_delete_programa.html', {'programa': programa})

@@ -43,13 +43,22 @@
                                 <span class="badge bg-danger">Inactivo</span>
                             {% endif %}
                         </td>
-                        <td>
+                        <td class="d-flex">
                             <a href="{% url 'details_instructor' x.id %}" class="btn btn-sm btn-info text-white me-2">
                                 <i class="fas fa-eye"></i> Detalles
                             </a>
-                            <a href="{% url 'editar_instructor' instructor_id=x.id %}" class="btn btn-sm btn-warning">
+
+                            <a href="{% url 'editar_instructor' instructor_id=x.id %}" class="btn btn-sm btn-warning me-2">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
+
+                            <!-- 🗑 Botón Eliminar -->
+                            <form action="{% url 'eliminar_instructor' x.id %}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este instructor?');">
+                                {% csrf_token %}
+                                <button class="btn btn-sm btn-danger">
+                                    <i class="fas fa-trash-alt"></i> Eliminar
+                                </button>
+                            </form>
                         </td>
                     </tr>
                     {% empty %}

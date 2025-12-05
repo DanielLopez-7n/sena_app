@@ -14,4 +14,8 @@ urlpatterns = [
     
     # READ (Detalle)
     path('detalles/<int:programa_id>/', views.detalle_programa, name='detalle_programa'),
+    
+    # DELETE
+    path('programas/<int:programa_id>/eliminar/', views.eliminar_programa, name='eliminar_programa'),
+
 ]

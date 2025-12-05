@@ -14,4 +14,5 @@ urlpatterns = [
     
     # 4. READ (Detalle) - Ruta para ver un instructor específico: /instructores/detalles/5/
     path('detalles/<int:instructor_id>/', views.details_instructor, name='details_instructor'),
+    path('eliminar/<int:instructor_id>/', views.eliminar_instructor, name='eliminar_instructor'),
 ]
