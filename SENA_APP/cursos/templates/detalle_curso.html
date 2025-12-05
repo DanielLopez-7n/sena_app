@@ -1,0 +1,111 @@
+{% extends "master.html" %}
+
+{% block title %}Detalles del Curso: {{ curso.nombre }}{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Detalles del Curso: {{ curso.nombre }}</h1>
+
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white fw-bold">
+            <i class="fas fa-graduation-cap me-2"></i> {{ curso.nombre }} ({{ curso.codigo }})
+        </div>
+        
+        <div class="card-body">
+            
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-tag me-1"></i> Información General</h5>
+            <div class="row mb-4 border-bottom pb-3">
+                <div class="col-md-4">
+                    <p><strong>Programa de Formación:</strong> {{ curso.programa.nombre }}</p>
+                    <p><strong>Nivel:</strong> {{ curso.programa.get_nivel_formacion_display }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Fecha de Inicio:</strong> {{ curso.fecha_inicio|date:"Y-m-d" }}</p>
+                    <p><strong>Fecha de Fin:</strong> {{ curso.fecha_fin|date:"Y-m-d" }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Horario:</strong> {{ curso.horario }}</p>
+                    <p><strong>Aula/Ambiente:</strong> {{ curso.aula }}</p>
+                </div>
+            </div>
+
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-user-tie me-1"></i> Coordinación y Estado</h5>
+            <div class="row mb-4 border-bottom pb-3">
+                <div class="col-md-4">
+                    <p><strong>Instructor Coordinador:</strong> {{ curso.instructor_coordinador.nombre }} {{ curso.instructor_coordinador.apellido }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Cupos (Máx/Actual):</strong> {{ curso.cupos_maximos }} / {{ curso.aprendices.count }}</p>
+                    <p><strong>Cupos Disponibles:</strong> {{ curso.cupos_disponibles }}</p>
+                </div>
+                <div class="col-md-4">
+                    <p><strong>Estado:</strong> <span class="badge bg-primary">{{ curso.get_estado_display }}</span></p>
+                    <p><strong>Observaciones:</strong> {{ curso.observaciones|default:"Ninguna" }}</p>
+                </div>
+            </div>
+
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-chalkboard-teacher me-1"></i> Instructores Impartiendo</h5>
+            <div class="table-responsive mb-4">
+                <table class="table table-sm table-bordered">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Instructor</th>
+                            <th>Rol en el Curso</th>
+                            <th>Especialidad</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ic in instructores_curso %}
+                        <tr>
+                            <td>{{ ic.instructor.nombre }} {{ ic.instructor.apellido }}</td>
+                            <td>{{ ic.rol }}</td>
+                            <td>{{ ic.instructor.especialidad }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="3" class="text-center text-muted">Aún no hay instructores asignados.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <h5 class="mt-2 mb-3 text-success"><i class="fas fa-users me-1"></i> Aprendices Inscritos</h5>
+            <div class="table-responsive">
+                <table class="table table-sm table-bordered">
+                    <thead class="bg-light">
+                        <tr>
+                            <th>Documento</th>
+                            <th>Nombre del Aprendiz</th>
+                            <th>Estado</th>
+                            <th>Nota Final</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for ac in aprendices_curso %}
+                        <tr>
+                            <td>{{ ac.aprendiz.documento_identidad }}</td>
+                            <td>{{ ac.aprendiz.nombre }} {{ ac.aprendiz.apellido }}</td>
+                            <td>{{ ac.get_estado_display }}</td>
+                            <td>{{ ac.nota_final|default:"N/A" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center text-muted">Aún no hay aprendices inscritos.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+        </div>
+        
+        <div class="card-footer d-flex justify-content-end">
+            <a href="{% url 'lista_cursos' %}" class="btn btn-secondary me-2">
+                <i class="fas fa-arrow-left me-1"></i> Volver a la Lista
+            </a>
+            <a href="{% url 'editar_curso' curso_id=curso.id %}" class="btn btn-warning">
+                <i class="fas fa-edit me-1"></i> Editar Curso
+            </a>
+        </div>
+    </div>
+{% endblock %}
