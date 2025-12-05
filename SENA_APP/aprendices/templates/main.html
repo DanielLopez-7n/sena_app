@@ -3,47 +3,87 @@
 {% block title %}SENA APP{% endblock %}
 
 {% block content %}
-    <div class="p-4 mb-4 bg-success text-white rounded shadow-sm">
+    <!-- Bloque de bienvenida (Jumbotron) -->
+    <div class="p-4 mb-4 bg-success text-white rounded shadow-lg">
         <h1 class="display-5 fw-bold">Bienvenido a SENA APP</h1>
         <p class="fs-5">Sistema de Gestión de Aprendices del Servicio Nacional de Aprendizaje</p>
-        <p class="lead">Administra y consulta la información de los aprendices e instructores de manera eficiente.</p>
-        <div class="d-flex flex-wrap gap-2 mt-3">
-            <a href="{% url 'lista_aprendices' %}" class="btn btn-outline-light">Ver Aprendices</a>
-            <a href="{% url 'lista_instructores' %}" class="btn btn-outline-light">Ver Instructores</a>
-            <a href="{% url 'lista_programas' %}" class="btn btn-outline-light">Ver Programas</a>
-        </div>
+        <p class="lead">{% lorem 1 b %}</p>
     </div>
 
+    <!-- Bloques de resumen de módulos (Cards) -->
     <div class="row g-4">
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
+        
+        <!-- Módulo: Aprendices -->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card h-100 shadow-lg border-primary border-3 border-bottom rounded-3">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">Lista de Aprendices</h5>
-                    <p class="card-text">Total de Aprendices: <span class="fw-bold">6</span></p>
-                    <a href="{% url 'lista_aprendices' %}" class="btn btn-success">Ver Lista</a>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-users fa-2x text-primary me-3"></i>
+                        <h5 class="card-title fw-bold mb-0">Lista de Aprendices</h5>
+                    </div>
+                    <!-- Nota: El conteo es mock (simulado) hasta que lo conectes a la DB -->
+                    <br>
+                    <br>
+                    <a href="{% url 'lista_aprendices' %}" class="btn btn-sm btn-primary mt-2">
+                        <i class="fas fa-search me-1"></i> Ver Lista
+                    </a>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
+        <!-- Módulo: Instructores -->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card h-100 shadow-lg border-success border-3 border-bottom rounded-3">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">Lista de Instructores</h5>
-                    <p class="card-text">Total de Instructores: <span class="fw-bold">1</span></p>
-                    <a href="{% url 'lista_instructores' %}" class="btn btn-success">Ver Lista</a>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-chalkboard-teacher fa-2x text-success me-3"></i>
+                        <h5 class="card-title fw-bold mb-0">Lista de Instructores</h5>
+                    </div>
+                    <!-- Nota: El conteo es mock (simulado) -->
+                    <br>
+                    <br>
+                    <a href="{% url 'lista_instructores' %}" class="btn btn-sm btn-success mt-2">
+                        <i class="fas fa-search me-1"></i> Ver Lista
+                    </a>
                 </div>
             </div>
         </div>
 
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-            <div class="card h-100 shadow-sm">
+        <!-- Módulo: Programas -->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card h-100 shadow-lg border-info border-3 border-bottom rounded-3">
                 <div class="card-body">
-                    <h5 class="card-title fw-bold">Lista de Programas</h5>
-                    <p class="card-text">Total de Programas: <span class="fw-bold">0</span></p>
-                    <a href="{% url 'lista_programas' %}" class="btn btn-success">Ver Lista</a>
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-graduation-cap fa-2x text-info me-3"></i>
+                        <h5 class="card-title fw-bold mb-0">Lista de Programas</h5>
+                    </div>
+                    <!-- Nota: El conteo es mock (simulado) -->
+                    <br>
+                    <br>
+                    <a href="{% url 'lista_programas' %}" class="btn btn-sm btn-info mt-2 text-white">
+                        <i class="fas fa-search me-1"></i> Ver Lista
+                    </a>
                 </div>
             </div>
         </div>
+
+        <!-- NUEVO MÓDULO: Cursos -->
+        <div class="col-sm-6 col-lg-3">
+            <div class="card h-100 shadow-lg border-warning border-3 border-bottom rounded-3">
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-book-open fa-2x text-warning me-3"></i>
+                        <h5 class="card-title fw-bold mb-0">Lista de Cursos</h5>
+                    </div>
+                    <!-- Nota: El conteo es mock (simulado) -->
+                    <br>
+                    <br>
+                    <a href="{% url 'lista_cursos' %}" class="btn btn-sm btn-warning mt-2 text-dark">
+                        <i class="fas fa-search me-1"></i> Ver Lista
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

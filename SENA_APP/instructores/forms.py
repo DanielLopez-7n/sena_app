@@ -5,7 +5,6 @@ from .models import Instructor
 class InstructorForm(forms.ModelForm):
     class Meta:
         model = Instructor
-        # 📌 CAMPOS ACTUALIZADOS SEGÚN TU MODELO
         fields = [
             'tipo_documento', 
             'documento_identidad', 
@@ -23,7 +22,6 @@ class InstructorForm(forms.ModelForm):
             'fecha_vinculacion'
         ]
         
-        # 📌 WIDGETS para aplicar clases de Bootstrap y tipos de input específicos
         widgets = {
             'tipo_documento': forms.Select(attrs={'class': 'form-select'}),
             'documento_identidad': forms.TextInput(attrs={'class': 'form-control'}),
