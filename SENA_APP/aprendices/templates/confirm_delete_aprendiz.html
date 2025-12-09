@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+
+{% block content %}
+
+<style>
+    .modal-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.45);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+    }
+
+    .modal-box {
+        background: white;
+        width: 380px;
+        padding: 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        animation: aparecer 0.25s ease-out;
+    }
+
+    @keyframes aparecer {
+        from { transform: scale(0.8); opacity: 0; }
+        to   { transform: scale(1); opacity: 1; }
+    }
+
+    h2 { color: #c0392b; font-size: 22px; }
+
+    .btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 6px;
+        font-size: 15px;
+        cursor: pointer;
+        margin: 6px;
+    }
+
+    .btn-cancelar { background: #7f8c8d; color: white; }
+    .btn-eliminar { background: #e74c3c; color: white; }
+
+    .btn-cancelar:hover { background: #95a5a6; }
+    .btn-eliminar:hover { background: #c0392b; }
+</style>
+
+
+<div class="modal-bg">
+    <div class="modal-box">
+
+        <h2>Eliminar Aprendiz</h2>
+
+        <p>¿Seguro que deseas eliminar a:<br>
+        <strong>{{ aprendiz.nombre }} {{ aprendiz.apellido }}</strong>?</p>
+
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-eliminar">Sí, eliminar</button>
+        </form>
+
+        <button onclick="window.history.back()" class="btn btn-cancelar">
+            Cancelar
+        </button>
+
+    </div>
+</div>
+
+{% endblock %}
