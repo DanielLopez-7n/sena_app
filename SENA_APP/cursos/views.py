@@ -1,6 +1,7 @@
 # curso/views.py
 
 from django.shortcuts import render, redirect, get_object_or_404
+from django.urls import reverse_lazy
 # Importaciones relativas: usa el punto (.) para referenciar modelos y formularios
 from .models import Curso
 from .forms import CursoForm
@@ -68,3 +69,4 @@ def eliminar_curso(request, curso_id):
         return redirect('lista_cursos')
 
     return render(request, 'confirm_delete_curso.html', {'curso': curso})
+

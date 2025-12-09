@@ -53,12 +53,10 @@
                             </a>
 
                             <!-- 🗑 Botón Eliminar -->
-                            <form action="{% url 'eliminar_instructor' x.id %}" method="POST" onsubmit="return confirm('¿Seguro que deseas eliminar este instructor?');">
-                                {% csrf_token %}
-                                <button class="btn btn-sm btn-danger">
-                                    <i class="fas fa-trash-alt"></i> Eliminar
-                                </button>
-                            </form>
+                            <a href="{% url 'eliminar_instructor' x.id %}" class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash-alt"></i> Eliminar
+                            </a>
+
                         </td>
                     </tr>
                     {% empty %}

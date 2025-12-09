@@ -49,8 +49,10 @@ def editar_instructor(request, instructor_id):
 
 
 def eliminar_instructor(request, instructor_id):
-     instructor = get_object_or_404(Instructor, id=instructor_id)
-     if request.method == 'POST':
-         instructor.delete()
-         return redirect('lista_instructores')
-     return render(request, 'confirm_delete_instructor.html', {'instructor': instructor})
+    instructor = get_object_or_404(Instructor, id=instructor_id)
+
+    if request.method == 'POST':
+        instructor.delete()
+        return redirect('lista_instructores')
+
+    return render(request, 'confirm_delete_instructor.html', {'instructor': instructor})

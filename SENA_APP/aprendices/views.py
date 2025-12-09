@@ -56,7 +56,6 @@ def editar_aprendiz(request, aprendiz_id):
     return render(request, 'aprendiz_form.html', context)
 
 def home_page(request):
-    # Asegúrate de que este archivo pueda acceder a 'main.html'
     return render(request, 'main.html')
 
 def eliminar_aprendiz(request, aprendiz_id):
@@ -66,5 +65,12 @@ def eliminar_aprendiz(request, aprendiz_id):
         aprendiz.delete()
         return redirect('lista_aprendices')
 
-    return render(request, 'confirm_delete_aprendiz.html', {'aprendiz': aprendiz})
+    return render(request, 'confirm_delete_aprendiz.html', {
+        'aprendiz': aprendiz,
+    })
+
+
+
+
+
 
