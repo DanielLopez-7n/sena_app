@@ -16,15 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from aprendices.views import home_page # Ejemplo si lo pusiste en aprendices/views.py
+from aprendices.views import home_page
 
 urlpatterns = [
-    path('', home_page, name='home'), # La ruta raíz, apunta a la vista home_page
-    path('', include('aprendices.urls')),
+    path('', home_page, name='home'),
+    path('', include('aprendices.urls', namespace='aprendices')),
     path('admin/', admin.site.urls),
     path('instructores/', include('instructores.urls')),
     path('programas/', include('programas.urls')),
     path('cursos/', include('cursos.urls')),
-    
-    
 ]
